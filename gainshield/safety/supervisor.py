@@ -110,7 +110,7 @@ class CandidateGate:
 
 @dataclass
 class MonitorEvent:
-    kind: str     # V_ABORT | I_ABORT | OSCILLATION | SENSOR_FAULT
+    kind: str     # V_ABORT | I_ABORT | OSCILLATION | SENSOR_FAULT | SENSOR_STUCK | POWER_BALANCE
     detail: str
 
 
@@ -135,9 +135,41 @@ class RuntimeMonitor:
         # max physically possible |dv| per sample (+ margin): P_max / (C_min * V) * Ts * 4
         C_min = cfg.plant.C_nom_F * (1 - cfg.plant.C_tol)
         self.dv_max = 4 * 1.5 * cfg.plant.Vg_peak_phase_V * cfg.converter.I_grid_max_A * 1.2 / (C_min * Vref) * self.Ts + 15.0
+        # ---- sensor plausibility (closes failure case R5, stuck voltage sensor) -------------
+        # (a) frozen-reading check: with A-14 sensor noise (1 V rms) a live ADC never returns
+        #     the same value for 2 ms; a stuck one does.
+        self.frozen_n = int(round(s.frozen_window_s / self.Ts))
+        self.frozen_tol = s.frozen_range_V
+        # (b) power-balance observer (analytical redundancy): predicts v_dc from the energy
+        #     balance C v dv/dt = P_afe(i_meas, vg_meas) - p_dcdc - v^2/R using only signals the
+        #     controller already has (measured grid current and voltage, the DC-DC power demand
+        #     and its nominal dynamics). A residual |v_meas - v_hat| that persists means the
+        #     voltage sensor or the plant model is wrong -> alarm.
+        p = cfg.plant
+        self.C_nom, self.R, self.eta = p.C_nom_F, p.R_loss_ohm, p.eta_afe
+        self.Vg_pk, self.tau_dc, self.slew = p.Vg_peak_phase_V, p.tau_dcdc_s, p.dcdc_slew_W_per_s
+        self.a_dc = 1.0 - math.exp(-self.Ts / self.tau_dc)
+        self.L_obs = self.Ts / s.observer_tau_s           # output-injection gain (healthy sensor)
+        self.a_res = self.Ts / (0.5e-3 + self.Ts)        # residual low-pass, 0.5 ms
+        self.res_th = s.residual_threshold_V
+        self.res_n = int(round(s.residual_hold_s / self.Ts))
         self.reset()
 
     def reset(self) -> None:
+        """Full reset (new session): detectors, observer and the sensor-fault latch."""
+        self.reset_detectors()
+        self.v_win: deque[float] = deque(maxlen=self.frozen_n)
+        self.v_hat: float | None = None
+        self.inj: deque[float] = deque(maxlen=int(round(0.03 / self.Ts)))  # last 30 ms of output injection
+        self.p_s = self.p_hat = 0.0
+        self.r_f = 0.0
+        self.r_count = 0
+        self.max_abs_residual = 0.0
+        self.sensor_failed = False      # latched: feedback switched to the observer estimate
+
+    def reset_detectors(self) -> None:
+        """Reset the transient detectors only (end of a lock-out). The observer keeps running
+        and a sensor-fault latch is NOT cleared: a failed sensor needs service, not a timer."""
         self.i_count = 0
         self.e_hist: deque[float] = deque(maxlen=self.win)
         self.cross: deque[int] = deque()
@@ -146,10 +178,58 @@ class RuntimeMonitor:
         self.v_prev: float | None = None
         self.e_f = 0.0
 
-    def check(self, e: float, v_meas: float, i_meas: float) -> MonitorEvent | None:
+    # ------------------------------------------------------------ power-balance observer
+    def _afe_dc(self, i_d: float, vg_pu: float) -> float:
+        p_ac = 1.5 * self.Vg_pk * vg_pu * i_d
+        return self.eta * p_ac if p_ac >= 0 else p_ac / self.eta
+
+    def observe(self, v_meas: float, i_meas: float, p_load: float, vg_pu: float, C_pu: float) -> float:
+        """Advance the observer one sample; returns the residual v_meas - v_hat (before update).
+        After a sensor fault the output injection is switched off, so v_hat runs open-loop on
+        the energy balance and serves as a virtual voltage sensor."""
+        if self.v_hat is None:
+            self.v_hat, self.p_s, self.p_hat = v_meas, p_load, p_load
+        r = v_meas - self.v_hat
+        dmax = self.slew * self.Ts
+        self.p_s += max(-dmax, min(dmax, p_load - self.p_s))
+        self.p_hat += self.a_dc * (self.p_s - self.p_hat)
+        v = max(self.v_hat, 1.0)
+        dv = (self._afe_dc(i_meas, vg_pu) - self.p_hat - v * v / self.R) / (self.C_nom * C_pu * v)
+        inj = 0.0 if self.sensor_failed else self.L_obs * r
+        self.inj.append(inj)
+        self.v_hat += self.Ts * dv + inj
+        return r
+
+    def _declare_sensor_fault(self) -> None:
+        """Latch the fault and undo the last 30 ms of output injection: once the sensor is wrong,
+        the injection has been pulling v_hat towards the wrong reading."""
+        self.sensor_failed = True
+        self.v_hat -= sum(self.inj)
+        self.inj.clear()
+
+    def check(self, e: float, v_meas: float, i_meas: float, p_load: float | None = None,
+              vg_pu: float | None = None, C_pu: float | None = None) -> MonitorEvent | None:
         self.k += 1
         if not self.enabled:
             return None
+        if p_load is not None and not self.sensor_failed:
+            r = self.observe(v_meas, i_meas, p_load, vg_pu if vg_pu is not None else 1.0,
+                             C_pu if C_pu is not None else 1.0)
+            self.r_f += self.a_res * (r - self.r_f)
+            self.max_abs_residual = max(self.max_abs_residual, abs(self.r_f))
+            self.v_win.append(v_meas)
+            if len(self.v_win) == self.frozen_n and max(self.v_win) - min(self.v_win) < self.frozen_tol:
+                self._declare_sensor_fault()
+                return MonitorEvent("SENSOR_STUCK", f"v_meas range {max(self.v_win) - min(self.v_win):.3f} V over "
+                                                    f"{self.frozen_n} samples (frozen reading)")
+            self.r_count = self.r_count + 1 if abs(self.r_f) > self.res_th else 0
+            if self.r_count >= self.res_n:
+                self._declare_sensor_fault()
+                return MonitorEvent("POWER_BALANCE", f"|v_meas - v_hat| = {abs(self.r_f):.1f} V > "
+                                                     f"{self.res_th:.1f} V for {self.r_count} samples")
+        elif p_load is not None:
+            self.observe(v_meas, i_meas, p_load, vg_pu if vg_pu is not None else 1.0,
+                         C_pu if C_pu is not None else 1.0)
         if self.v_prev is not None and abs(v_meas - self.v_prev) > self.dv_max:
             jump = abs(v_meas - self.v_prev)
             self.v_prev = v_meas

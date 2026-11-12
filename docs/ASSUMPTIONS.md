@@ -24,6 +24,7 @@ every result.
 | A-13 | Stability requirements | worst-case PM ≥ 40°, GM ≥ 6 dB, modulus margin ≥ 0.5 over the uncertainty set | Conventional robustness targets; 40° is a *worst-case* requirement (nominal PM is higher). |
 | A-14 | Sensor noise | 1 V (voltage), 0.5 A (current), 1σ | ~0.1 % of full scale; noise-scaled ×2/×3 in tests. |
 | A-15 | Context-estimation error bounds | C ±5 %, Vg ±3 %, τ_i ±20 %, delay ±0.2 samples | Used by the context-conditioned certificate. Simulated errors are drawn well inside (C σ = 1.5 %). Assumes C, τ_i and delay are identified at commissioning / online. |
+| A-16 | Sensor-plausibility observer inputs | DC-DC power demand and its nominal dynamics (2 ms lag, 2 kW/ms slew), measured i_d and grid voltage, R_loss, η | The DC-DC stage belongs to the same charger, so its power command is known to the controller. Residual threshold 16 V (2 %) set at 2.6× the largest healthy-sensor residual found over the 55 evaluation runs (6.2 V, 3× sensor noise). |
 
 ## Model simplifications (what is NOT represented)
 

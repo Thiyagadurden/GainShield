@@ -64,14 +64,14 @@
       "layer": "E: runtime monitor + F: fallback",
       "detected": true,
       "detection": "V_ABORT",
-      "t_detect_ms": 105.30000000000001,
+      "t_detect_ms": 105.9,
       "response": "rollback to baseline",
-      "reason": "|Vdc-Vref|=32.4 V > 32.0 V",
+      "reason": "|Vdc-Vref|=34.1 V > 32.0 V",
       "rollbacks": 1,
       "true_trip": 0.0,
       "v_viol_ms": 0.0,
-      "peak_dev_pct": 3.9455367979430633,
-      "final_abs_err_V": 0.35297825798716076
+      "peak_dev_pct": 3.8662271959671415,
+      "final_abs_err_V": 0.3831914845331994
     },
     {
       "case": "R2 same, runtime monitor disabled (ablation D)",
@@ -83,23 +83,23 @@
       "reason": "",
       "rollbacks": 0,
       "true_trip": 0.0,
-      "v_viol_ms": 48.0,
-      "peak_dev_pct": 7.56412521844527,
-      "final_abs_err_V": 33.773004991466564
+      "v_viol_ms": 47.800000000000004,
+      "peak_dev_pct": 7.546688242777734,
+      "final_abs_err_V": 33.6172635551942
     },
     {
       "case": "R3 same, fallback disabled (ablation F)",
       "layer": "E: runtime monitor + F: fallback",
       "detected": true,
       "detection": "V_ABORT",
-      "t_detect_ms": 105.30000000000001,
+      "t_detect_ms": 105.9,
       "response": "alarm only (fallback disabled)",
-      "reason": "|Vdc-Vref|=32.4 V > 32.0 V",
+      "reason": "|Vdc-Vref|=34.1 V > 32.0 V",
       "rollbacks": 0,
       "true_trip": 0.0,
-      "v_viol_ms": 48.0,
-      "peak_dev_pct": 7.56412521844527,
-      "final_abs_err_V": 33.773004991466564
+      "v_viol_ms": 47.800000000000004,
+      "peak_dev_pct": 7.546688242777734,
+      "final_abs_err_V": 33.6172635551942
     },
     {
       "case": "R4 voltage-sensor spike +60 V for 0.3 ms",
@@ -112,11 +112,39 @@
       "rollbacks": 1,
       "true_trip": 0.0,
       "v_viol_ms": 0.0,
-      "peak_dev_pct": 0.7947740568630479,
-      "final_abs_err_V": 0.35297825798716076
+      "peak_dev_pct": 0.7918271563544437,
+      "final_abs_err_V": 0.3831914845331994
     },
     {
       "case": "R5 voltage sensor stuck at 800 V from 100 ms, load step at 150 ms",
+      "layer": "E: runtime monitor + F: fallback",
+      "detected": true,
+      "detection": "SENSOR_STUCK",
+      "t_detect_ms": 101.9,
+      "response": "baseline gains + virtual voltage sensor (observer)",
+      "reason": "v_meas range 0.000 V over 20 samples (frozen reading)",
+      "rollbacks": 1,
+      "true_trip": 0.0,
+      "v_viol_ms": 0.0,
+      "peak_dev_pct": 1.2612540013964377,
+      "final_abs_err_V": 0.5321822056305336
+    },
+    {
+      "case": "R5b sensor stuck at 800 V but still noisy (1 V rms), load step at 150 ms",
+      "layer": "E: runtime monitor + F: fallback",
+      "detected": true,
+      "detection": "POWER_BALANCE",
+      "t_detect_ms": 158.5,
+      "response": "baseline gains + virtual voltage sensor (observer)",
+      "reason": "|v_meas - v_hat| = 20.3 V > 16.0 V for 10 samples",
+      "rollbacks": 0,
+      "true_trip": 0.0,
+      "v_viol_ms": 0.0,
+      "peak_dev_pct": 4.572098218629094,
+      "final_abs_err_V": 3.4353682750486314
+    },
+    {
+      "case": "R5-ref same stuck sensor, sensor checks disabled (previous GainShield)",
       "layer": "E: runtime monitor + F: fallback",
       "detected": false,
       "detection": "none",
@@ -126,8 +154,8 @@
       "rollbacks": 0,
       "true_trip": 1.0,
       "v_viol_ms": 57.7,
-      "peak_dev_pct": 96.26565314884549,
-      "final_abs_err_V": 770.1252251907639
+      "peak_dev_pct": 96.25288979582973,
+      "final_abs_err_V": 770.0231183666377
     },
     {
       "case": "R6 plant outside model: C = 0.5 pu, delay 3 samples (context not updated)",

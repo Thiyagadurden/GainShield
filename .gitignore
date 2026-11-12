@@ -1,22 +1,10 @@
-# Python
 __pycache__/
-*.py[cod]
-*.egg-info/
+*.pyc
 .venv/
-venv/
-.env
-
-# macOS
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
-
-# Temporary files
-*.log
 .pytest_cache/
-.mypy_cache/
-
-# Jupyter
 .ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.DS_Store
+.streamlit/secrets.toml

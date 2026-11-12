@@ -22,10 +22,10 @@ hardware-validated.
 |---|---|---|---|---|---|
 | Bounded action space | `config [gains_box]`, tier-1/tier-2 masks, ×3 step limit | `test_proposals_stay_in_candidate_set` | tuning_history.csv | Complete and tested | – |
 | Online PI tuning (closed-loop probe episodes on the plant) | `core.GainShield.tune_context` | `test_integration.py` | tuning_summary.json, gain_evolution.png | Complete and tested (in simulation) | Probe acceptability on a real charger |
-| Safe Bayesian optimisation (GP surrogates, safe set, expanders) | `optimizer/gp.py`, `optimizer/safe_bo.py` | `test_optimizer.py` | safe_set_nominal.png | Implemented but not fully validated (theoretical SafeOpt guarantee not established) | RKHS-bound analysis / more seeds |
+| Safe Bayesian optimisation (GP surrogates, safe set, expanders) | `optimizer/gp.py`, `optimizer/safe_bo.py` | `test_optimizer.py` | safe_set_nominal.png; 0 of 482 tuning episodes outside ±5 % | Complete and tested (in simulation). Safety of learning is shown by test, not proven: the theoretical SafeOpt guarantee is not claimed | RKHS-bound analysis / more seeds |
 | Context-aware (C, Vg, P, mode, τ_i, delay) | `simulation.ContextEstimate`, BO context inputs | integration + ablation E | ablation.csv | Implemented but not fully validated (context estimation is assumed, not implemented) | Online identification |
 | Stability monitor (certificate re-check) | `safety/supervisor.CandidateGate` | `test_gate_rejects_and_accepts` | failure_injection.csv G1–G6 | Complete and tested | – |
-| Safety monitor (runtime) | `safety/supervisor.RuntimeMonitor` | `test_monitor_*` | failure_injection.csv R1–R7 | Partially implemented – stuck sensor not detected (R5) | Power-balance observer |
+| Safety monitor (runtime) | `safety/supervisor.RuntimeMonitor` | `test_monitor_*`, `test_*sensor*` | failure_injection.csv R1–R7 incl. R5/R5b (stuck sensor detected, virtual-sensor fallback) | Complete and tested (in simulation) | Threshold check on hardware noise (HIL H7) |
 
 ## Deliverable 3 – Safe fallback, rollback, complete audit log
 
@@ -64,4 +64,4 @@ hardware-validated.
 |---|---|---|---|---|
 | Ablation A–F (+ B+C) | `run_ablation.py` | ablation.csv, ABLATION_REPORT.md | Complete and tested (simulation) | Larger budgets to stress B |
 | Failure analysis (condition, root cause, detection, response, residual risk, mitigation) | `run_failure_injection.py`, `faults.py` | FAILURE_ANALYSIS.md | Complete and tested (simulation) | Implement mitigations |
-| Controlled HIL roadmap | – | HIL_ROADMAP.md | Proposed (no HIL performed) | Execute PIL/HIL |
+| Controlled HIL roadmap | – | HIL_ROADMAP.md (staged plan, I/O, protection, 8 tests with acceptance criteria, costed) | Complete as a roadmap (the deliverable); no HIL performed yet | Execute PIL/HIL |
