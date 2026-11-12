@@ -57,10 +57,17 @@ def gate_cases(cfg, gs) -> list[dict]:
     return rows
 
 
-def runtime_case(cfg, gs, name, scenario, flags=None, seed=0, **fault) -> tuple[dict, pd.DataFrame]:
+def gs_flags_fallback(agent) -> bool:
+    return bool(agent.flags.fallback)
+
+
+def runtime_case(cfg, gs, name, scenario, flags=None, seed=0, no_sensor_checks=False, **fault) -> tuple[dict, pd.DataFrame]:
     gs.flags = flags or GainShieldFlags()
     agent = FaultInjectingAgent(cfg, gs, name="gainshield", **fault)
     agent.monitor.enabled = gs.flags.runtime_monitor
+    if no_sensor_checks:
+        agent.monitor.frozen_tol = -1.0
+        agent.monitor.res_th = float("inf")
     r = simulate(cfg, scenario, agent, seed=seed)
     m = scenario_metrics(cfg, r.df, scenario.first_event_t)
     gs.flags = GainShieldFlags()
@@ -68,7 +75,9 @@ def runtime_case(cfg, gs, name, scenario, flags=None, seed=0, **fault) -> tuple[
     return ({"case": name, "layer": "E: runtime monitor + F: fallback",
              "detected": bool(ev), "detection": ev[0]["kind"] if ev else "none",
              "t_detect_ms": 1e3 * ev[0]["t"] if ev else math.nan,
-             "response": ("rollback to baseline" if agent.rollbacks else
+             "response": ("baseline gains + virtual voltage sensor (observer)" if agent.monitor.sensor_failed
+                          and gs_flags_fallback(agent) else
+                          "rollback to baseline" if agent.rollbacks else
                           ("alarm only (fallback disabled)" if agent.violation_unhandled else
                            ("alarm, baseline already active" if ev else "none"))),
              "reason": ev[0]["detail"] if ev else "", "rollbacks": agent.rollbacks,
@@ -100,6 +109,14 @@ def main() -> None:
     r, _ = runtime_case(cfg, gs, "R5 voltage sensor stuck at 800 V from 100 ms, load step at 150 ms",
                         Scenario("stuck", "", 0.30, 10e3, events=(Event(0.15, "p_load", 20e3),)),
                         sensor_fault=(0.10, 1.0, "stuck", 800.0))
+    rows.append(r)
+    r, _ = runtime_case(cfg, gs, "R5b sensor stuck at 800 V but still noisy (1 V rms), load step at 150 ms",
+                        Scenario("stuck_noisy", "", 0.30, 10e3, events=(Event(0.15, "p_load", 20e3),)),
+                        sensor_fault=(0.10, 1.0, "stuck_noisy", 800.0))
+    rows.append(r)
+    r, _ = runtime_case(cfg, gs, "R5-ref same stuck sensor, sensor checks disabled (previous GainShield)",
+                        Scenario("stuck", "", 0.30, 10e3, events=(Event(0.15, "p_load", 20e3),)),
+                        sensor_fault=(0.10, 1.0, "stuck", 800.0), no_sensor_checks=True)
     rows.append(r)
     r, _ = runtime_case(cfg, gs, "R6 plant outside model: C = 0.5 pu, delay 3 samples (context not updated)",
                         Scenario("drift", "", 0.30, 5e3, events=(Event(0.05, "p_load", 20e3),),

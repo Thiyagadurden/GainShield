@@ -112,10 +112,28 @@ class SupervisedPIAgent:
                                        context=_ctx_dict(ctx)))
 
     def control(self, m: Measurement, ctx: ContextEstimate) -> float:
-        ev = self.monitor.check(m.v_ref - m.v, m.v, m.i)
-        if ev is not None and not (self.state == "FALLBACK" and self.flags.fallback):
+        ev = self.monitor.check(m.v_ref - m.v, m.v, m.i, m.p_load, m.vg_pu, ctx.C_pu)
+        if ev is not None and ev.kind in ("SENSOR_STUCK", "POWER_BALANCE"):
+            # voltage sensor not trustworthy: baseline gains AND the observer as a virtual sensor
+            self._on_sensor_fault(ev, m, ctx)
+        elif ev is not None and not (self.state == "FALLBACK" and self.flags.fallback):
             self._on_monitor(ev, m, ctx)
-        return self.pi.update(m.v_ref, m.v)
+        v_fb = self.monitor.v_hat if (self.monitor.sensor_failed and self.flags.fallback) else m.v
+        return self.pi.update(m.v_ref, v_fb)
+
+    def _on_sensor_fault(self, ev, m: Measurement, ctx: ContextEstimate) -> None:
+        if self.flags.fallback:
+            self._on_monitor(ev, m, ctx) if self.state != "FALLBACK" else None
+            self.state = "FALLBACK"
+            self.aborted = True
+            self.audit.log(AuditRecord(event="SENSOR_FALLBACK", t_sim_s=m.t, mode=ctx.mode, controller_state="FALLBACK",
+                                       v_meas_V=m.v, i_meas_A=m.i, Kp_active=self.pi.gains.Kp,
+                                       Ki_active=self.pi.gains.Ki, decision="VIRTUAL_SENSOR",
+                                       reason=f"{ev.kind} ({ev.detail}): feedback switched to power-balance "
+                                              f"observer estimate {self.monitor.v_hat:.1f} V; service required",
+                                       context=_ctx_dict(ctx)))
+        else:
+            self._on_monitor(ev, m, ctx)
 
     def status(self) -> dict:
         return {"state": self.state, "Kp": self.pi.gains.Kp, "Ki": self.pi.gains.Ki}
@@ -205,9 +223,9 @@ class GainShieldAgent(SupervisedPIAgent):
 
     def control(self, m: Measurement, ctx: ContextEstimate) -> float:
         self.k += 1
-        if self.state == "FALLBACK" and self.k >= self.lock_until > 0:
+        if self.state == "FALLBACK" and self.k >= self.lock_until > 0 and not self.monitor.sensor_failed:
             self.state = "BASELINE"
-            self.monitor.reset()
+            self.monitor.reset_detectors()
             self._decide(ctx, m, m.t)
         elif self.state != "FALLBACK":
             if self._changed(ctx):
@@ -243,6 +261,8 @@ class TuningContext:
 
 
 def default_training_contexts() -> list[TuningContext]:
+    """Training contexts for the online tuning sessions (v2: 13 contexts covering every
+    disturbance class of the evaluation suite, without reusing any evaluation episode)."""
     return [
         TuningContext("nominal_10kW", 10e3),
         TuningContext("C-20%_10kW", 10e3, variation=PlantVariation(C_pu=0.8)),
@@ -252,6 +272,12 @@ def default_training_contexts() -> list[TuningContext]:
         TuningContext("tau0.9ms_10kW", 10e3, variation=PlantVariation(tau_i_s=0.9e-3)),
         TuningContext("delay1.9_10kW", 10e3, variation=PlantVariation(delay_samples=1.9)),
         TuningContext("nominal_20kW", 20e3),
+        TuningContext("nominal_5kW", 5e3),
+        TuningContext("sag0.8_20kW", 20e3, vg_pu=0.8),
+        TuningContext("tau1.0ms_5kW", 5e3, variation=PlantVariation(tau_i_s=1.0e-3)),
+        TuningContext("V2G_-15kW", -15e3),
+        TuningContext("stress_C0.8_tau1_d2_0.85pu", 12e3, vg_pu=0.85,
+                      variation=PlantVariation(C_pu=0.8, tau_i_s=1.0e-3, delay_samples=2.0)),
     ]
 
 

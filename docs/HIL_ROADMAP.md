@@ -39,7 +39,7 @@ No hardware validation has been performed.
   trip line, UART/CAN for supervision.
 * **Protection.** Independent over/under-voltage trip on the simulator side; MCU watchdog; gain write
   protected by CRC + range check; fallback to baseline on communication loss; hardware OVP/UVP comparator
-  (addresses failure case R5).
+  (independent last line behind the software sensor checks of R5/R5b).
 
 ## Test cases and acceptance criteria
 
@@ -51,7 +51,7 @@ No hardware validation has been performed.
 | H4 | GainShield gains (from simulation) | same as H3; no monitor alarm |
 | H5 | Online tuning session (10 iterations) | zero episodes outside ±5 %, all decisions in audit log |
 | H6 | Injected unstable gains (bypass) | rollback < 50 ms, no trip |
-| H7 | Sensor faults (spike, stuck) | spike: alarm; stuck: hardware OVP/UVP trips safely |
+| H7 | Sensor faults (spike, stuck, stuck-noisy) | spike: alarm; stuck: detected < 10 ms, voltage within ±5 % on the observer; healthy-noise residual < 50 % of threshold |
 | H8 | Communication loss PC↔MCU | MCU keeps / reverts to baseline within 1 control period |
 
 Unsafe ablation configurations (B–F) are **never** run on hardware.

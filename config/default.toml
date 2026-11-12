@@ -50,7 +50,7 @@ Ki_range = [5.0, 5000.0]     # A/(V s)
 beta             = 2.0       # confidence multiplier (SafeOpt-style)
 n_grid           = 41        # candidate grid per gain axis (log space)
 n_init           = 3         # initial safe design points around baseline
-iters_per_context = 25
+iters_per_context = 40
 safety_margin_min = 0.15     # GP lower bound of normalised margin must exceed this
 sigma_max_accept = 0.25      # reject proposals with GP safety std above this
 seed             = 7
@@ -61,6 +61,11 @@ I_abort_frac     = 0.97      # abort if |i| > 97 % of limit for > hold time
 I_abort_hold_s   = 2.0e-3
 osc_window_s     = 10.0e-3   # oscillation detector window
 osc_rms_V        = 6.0       # abort if voltage-error RMS in window exceeds this
+frozen_window_s  = 2.0e-3    # sensor plausibility: a live sensor (A-14 noise) never freezes for 2 ms
+frozen_range_V   = 0.05      #   ... "frozen" = reading range below this over the window
+observer_tau_s   = 10.0e-3   # power-balance observer output-injection time constant
+residual_threshold_V = 16.0  # power-balance residual alarm (2 %); set from the healthy-sensor max, see docs
+residual_hold_s  = 1.0e-3    # residual must persist this long
 context_envelope = { C_pu = [0.75, 1.25], Vg_pu = [0.78, 1.12], tau_i_ms = [0.25, 1.1], delay_samples = [0.9, 2.1] }
 
 [noise]

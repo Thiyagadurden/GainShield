@@ -1,81 +1,117 @@
 {
-  "contexts": 8,
-  "proposals": 210,
-  "episodes_run": 175,
-  "rejected_by_supervisor": 35,
+  "contexts": 13,
+  "proposals": 535,
+  "episodes_run": 482,
+  "rejected_by_supervisor": 53,
   "rejection_reasons": {
-    "gain step x3.24": 18,
-    "gain step x3.85": 14,
-    "GP margin uncertainty 0.26": 1,
-    "not certified (robust_stable=True, PM=39.7 deg, GM=11.5 dB, MM=0.52)": 1,
-    "gain step x3.20": 1
+    "gain step x3.24": 23,
+    "gain step x3.85": 22,
+    "gain step x4.58": 4,
+    "gain step x3.20": 2,
+    "gain step x3.29": 1,
+    "not certified (robust_stable=True, PM=39.9 deg, GM=10.8 dB, MM=0.51)": 1
   },
   "episodes_aborted_by_monitor": 0,
   "episodes_with_true_band_violation": 0,
   "episodes_with_trip": 0,
-  "max_true_dev_V": 15.68638017358353,
-  "min_measured_m_v": 0.5098006195755147,
-  "bo_iteration_ms_median": 59.84682800021801,
-  "bo_iteration_ms_p95": 288.17552910018094,
-  "wall_seconds_total": 85.3229026189997,
-  "audit_records": 578,
+  "max_true_dev_V": 18.3141473374925,
+  "min_measured_m_v": 0.4276828957033594,
+  "bo_iteration_ms_median": 327.57769000011194,
+  "bo_iteration_ms_p95": 1439.944373699916,
+  "wall_seconds_total": 500.161798674,
+  "audit_records": 1484,
   "audit_gain_trace_problems": [],
   "recommended": {
     "nominal_10kW": {
-      "Kp": 1.9011359896324658,
+      "Kp": 1.7161664286102438,
       "Ki": 374.94710466622786,
-      "pred_J": 0.8803819986407425,
+      "pred_J": 0.8803150381003255,
       "baseline_J_measured": 0.9987625763698784,
       "best_J_measured": 0.876518016677378
     },
     "C-20%_10kW": {
       "Kp": 1.9011359896324658,
-      "Ki": 315.47867224009644,
-      "pred_J": 0.8624967714306622,
+      "Ki": 187.91870214422212,
+      "pred_J": 0.8529512920352181,
       "baseline_J_measured": 0.9909182104947083,
-      "best_J_measured": 0.8573972702171799
+      "best_J_measured": 0.8417821309162898
     },
     "C+20%_10kW": {
-      "Kp": 1.9011359896324658,
-      "Ki": 315.47867224009644,
-      "pred_J": 0.915806705514966,
+      "Kp": 2.584488042323465,
+      "Ki": 445.6254690668729,
+      "pred_J": 0.9191199831192107,
       "baseline_J_measured": 1.0318055600388398,
-      "best_J_measured": 0.9120841827838029
+      "best_J_measured": 0.8979065802211688
     },
     "sag0.85_20kW": {
       "Kp": 1.311094804357985,
       "Ki": 152.89735327789916,
-      "pred_J": 1.1076338201408922,
+      "pred_J": 1.106694716785243,
       "baseline_J_measured": 1.0937162732913759,
-      "best_J_measured": 1.0782070304664533
+      "best_J_measured": 1.0764727908801068
     },
     "V2G_-12kW": {
-      "Kp": 1.7161664286102438,
-      "Ki": 315.47867224009644,
-      "pred_J": 0.8470272435493575,
+      "Kp": 2.106041693172322,
+      "Ki": 374.94710466622786,
+      "pred_J": 0.8381024558642797,
       "baseline_J_measured": 0.9684464403905854,
-      "best_J_measured": 0.8562413324261658
+      "best_J_measured": 0.8276491412476581
     },
     "tau0.9ms_10kW": {
       "Kp": 1.7161664286102438,
       "Ki": 187.91870214422212,
-      "pred_J": 0.9741600418457457,
+      "pred_J": 1.0218943423835352,
       "baseline_J_measured": 1.0772051289160351,
-      "best_J_measured": 1.0021734437098948
+      "best_J_measured": 1.009293162055659
     },
     "delay1.9_10kW": {
-      "Kp": 2.333032269952246,
+      "Kp": 2.106041693172322,
       "Ki": 265.4422221154942,
-      "pred_J": 0.8764563839230355,
+      "pred_J": 0.8997684134791681,
       "baseline_J_measured": 1.0049113620933514,
-      "best_J_measured": 0.8989325567634205
+      "best_J_measured": 0.8929033190376527
     },
     "nominal_20kW": {
       "Kp": 1.3984657664836895,
-      "Ki": 158.11388300841895,
-      "pred_J": 0.9751102738220865,
+      "Ki": 223.34179607548148,
+      "pred_J": 0.943087260770876,
       "baseline_J_measured": 0.9744190375346289,
-      "best_J_measured": 0.9744190375346289
+      "best_J_measured": 0.9356864428070665
+    },
+    "nominal_5kW": {
+      "Kp": 2.106041693172322,
+      "Ki": 315.47867224009644,
+      "pred_J": 0.8715932384316514,
+      "baseline_J_measured": 1.012261453747377,
+      "best_J_measured": 0.8714333083067383
+    },
+    "sag0.8_20kW": {
+      "Kp": 1.311094804357985,
+      "Ki": 152.89735327789916,
+      "pred_J": 1.1536180555537041,
+      "baseline_J_measured": 1.1561663231192136,
+      "best_J_measured": 1.11267642198428
+    },
+    "tau1.0ms_5kW": {
+      "Kp": 1.9011359896324658,
+      "Ki": 158.11388300841895,
+      "pred_J": 1.0303949872152227,
+      "baseline_J_measured": 1.0821615694969542,
+      "best_J_measured": 1.0231903942474625
+    },
+    "V2G_-15kW": {
+      "Kp": 2.106041693172322,
+      "Ki": 315.47867224009644,
+      "pred_J": 0.8544887993183284,
+      "baseline_J_measured": 0.9774477175854546,
+      "best_J_measured": 0.8646529775383689
+    },
+    "stress_C0.8_tau1_d2_0.85pu": {
+      "Kp": 1.311094804357985,
+      "Ki": 152.89735327789916,
+      "pred_J": 1.1500856578662355,
+      "baseline_J_measured": 1.1477783719742984,
+      "best_J_measured": 1.1477783719742984
     }
   },
   "environment": {

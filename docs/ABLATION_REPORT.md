@@ -3,7 +3,7 @@
 *Generated from `results/ablation.csv` by `experiments/make_reports.py`. Isolated simulation only - the
 unsafe variants must never be connected to hardware.*
 
-Each variant is trained from scratch on the same 8 contexts with the same seeds and 20 iterations per context,
+Each variant is trained from scratch on the same 13 contexts with the same seeds and 20 iterations per context,
 then (i) deployed on 7 evaluation scenarios × 2 seeds (performance relative to the baseline on the same runs),
 and (ii) subjected to the same fault: unstable gains (Kp = 0.30, Ki = 1500) written behind the gate at 60 ms.
 
@@ -11,13 +11,13 @@ and (ii) subjected to the same fault: unstable gains (Kp = 0.30, Ki = 1500) writ
 
 | variant | episodes | rejected | tuning_monitor_aborts | tuning_unsafe_episodes | tuning_not_robustly_stable_gains | tuning_max_dev_V | deploy_peak_dev_vs_baseline | deploy_IAE_vs_baseline | deploy_ripple_vs_baseline | deploy_trips | fault_detected | fault_rolled_back | fault_peak_dev_pct | fault_v_viol_ms |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A complete | 144 | 26 | 0 | 0 | 0 | 15.5 | 0.815 | 0.845 | 1.23 | 0 | True | True | 3.95 | 0 |
-| B no certified region | 148 | 22 | 0 | 0 | 0 | 14.3 | 0.842 | 0.856 | 1.18 | 0 | True | True | 4.7 | 0 |
-| C no GP uncertainty | 15 | 155 | 0 | 0 | 0 | 15.5 | 0.645 | 0.614 | 1.28 | 0 | True | True | 4.38 | 0 |
-| D no runtime monitor | 144 | 26 | 0 | 0 | 0 | 15.5 | 0.815 | 0.845 | 1.23 | 0 | False | False | 7.54 | 47.5 |
-| E no context | 141 | 29 | 0 | 0 | 0 | 16.7 | 0.886 | 0.969 | 1.18 | 0 | True | True | 4.69 | 0 |
-| F no fallback | 144 | 26 | 0 | 0 | 0 | 15.5 | 0.815 | 0.845 | 1.23 | 0 | True | False | 7.54 | 47.5 |
-| B+C plain constrained BO | 14 | 156 | 0 | 0 | 0 | 11.9 | 1 | 1 | 1 | 0 | True | True | 4.13 | 0 |
+| A complete | 233 | 42 | 0 | 0 | 0 | 18.7 | 0.796 | 0.818 | 1.18 | 0 | True | True | 3.95 | 0 |
+| B no certified region | 227 | 48 | 0 | 0 | 2 | 14.3 | 0.856 | 0.842 | 1.07 | 0 | True | True | 3.95 | 0 |
+| C no GP uncertainty | 35 | 240 | 0 | 0 | 0 | 18.6 | 0.692 | 0.68 | 1.34 | 0 | True | True | 4.71 | 0 |
+| D no runtime monitor | 233 | 42 | 0 | 0 | 0 | 18.7 | 0.796 | 0.818 | 1.18 | 0 | False | False | 7.54 | 47.5 |
+| E no context | 245 | 30 | 0 | 0 | 0 | 18.6 | 0.886 | 0.969 | 1.18 | 0 | True | True | 4.69 | 0 |
+| F no fallback | 233 | 42 | 0 | 0 | 0 | 18.7 | 0.796 | 0.818 | 1.18 | 0 | True | False | 7.54 | 47.5 |
+| B+C plain constrained BO | 22 | 253 | 0 | 0 | 1 | 18.2 | 0.944 | 0.928 | 1.06 | 0 | True | True | 4.13 | 0 |
 
 ## What each ablation removes and what it demonstrates
 

@@ -10,24 +10,24 @@
   for both controllers; the context-estimation error (C ±1.5 %, τ ±5 %, delay ±0.05 samples, 1σ) is identical too.
 * 11 scenarios × 5 seeds = 55 runs per controller.
 * Metrics are computed on the TRUE plant signals (not the noisy measurements).
-* GainShield uses the contextual GP model trained in `run_tuning.py` (175 probe episodes over
-  8 training contexts; none of the 11 evaluation scenarios is a training episode).
+* GainShield uses the contextual GP model trained in `run_tuning.py` (482 probe episodes over
+  13 training contexts; none of the 11 evaluation scenarios is a training episode).
 
 ## Headline (paired over all 55 runs)
 
 | metric | baseline mean | GainShield mean | mean relative change | GainShield better in | Wilcoxon p |
 |---|---|---|---|---|---|
-| peak_dev_pct | 2.026 | 1.692 | -15.6 % | 40/55 | 3.6e-08 |
-| IAE_Vs | 0.316 | 0.270 | -14.9 % | 40/55 | 3.6e-08 |
-| settling_time_ms | 56.853 | 54.875 | -7.9 % | 40/55 | 3.5e-08 |
-| i_ripple_A | 1.673 | 1.784 | +8.5 % | 10/55 | 1.6e-03 |
+| peak_dev_pct | 2.026 | 1.607 | -18.7 % | 44/55 | 7.6e-09 |
+| IAE_Vs | 0.316 | 0.262 | -16.9 % | 44/55 | 7.6e-09 |
+| settling_time_ms | 56.853 | 54.782 | -8.0 % | 44/55 | 7.5e-09 |
+| i_ripple_A | 1.673 | 1.854 | +13.8 % | 10/55 | 7.3e-04 |
 
 * Voltage-band (±5 %) violation time: baseline 0.0 ms,
   GainShield 0.0 ms. Trips (±10 %): 0 / 0.
   Current-limit violation time: 0.0 / 0.0 ms.
 * Smallest phase margin of any gain set actually used, evaluated on the TRUE plant of each run:
-  baseline 45.8°, GainShield 45.8°;
-  smallest modulus margin 0.65 / 0.65.
+  baseline 45.8°, GainShield 44.2°;
+  smallest modulus margin 0.65 / 0.63.
 * Runtime-monitor alarms: {'combined': 3} (all while the baseline was already active - see below); rollbacks: 0.
 
 **Interpretation.** GainShield's advantage is a ~15 % mean reduction in peak deviation and IAE, bought with a
@@ -41,16 +41,16 @@ behaviour, not a failure: GainShield is never worse than the baseline there.
 
 | scenario | peak dev % (base) | peak dev % (GS) | Δ peak % | IAE V·s (base) | IAE V·s (GS) | Δ IAE % | t_s ms (base) | t_s ms (GS) | PM true ° (base) | PM true ° (GS) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| load_increase | 1.85 | 1.59 | -14 | 0.225 | 0.198 | -11.8 | 21.5 | 21 | 57.7 | 48.6 |
-| load_decrease | 1.86 | 1.22 | -34.2 | 0.227 | 0.134 | -41 | 21.7 | 14.3 | 57.7 | 48.6 |
-| g2v_to_v2g | 2.79 | 1.54 | -44.7 | 0.416 | 0.232 | -44.2 | 30.2 | 22.8 | 57.7 | 49.7 |
-| v2g_to_g2v | 2.78 | 2.18 | -21.6 | 0.413 | 0.306 | -25.8 | 30 | 26.2 | 57.7 | 49.7 |
+| load_increase | 1.85 | 1.59 | -14.1 | 0.225 | 0.198 | -12 | 21.5 | 21 | 57.7 | 51.7 |
+| load_decrease | 1.86 | 1.26 | -32.2 | 0.227 | 0.151 | -33.5 | 21.7 | 16.1 | 57.7 | 51.7 |
+| g2v_to_v2g | 2.79 | 1.44 | -48.2 | 0.416 | 0.237 | -43 | 30.2 | 24.3 | 57.7 | 46.9 |
+| v2g_to_g2v | 2.78 | 1.48 | -46.8 | 0.413 | 0.206 | -50.1 | 30 | 22 | 57.7 | 46.9 |
 | grid_sag | 0.779 | 0.779 | 0 | 0.157 | 0.157 | 0 | 159 | 159 | 57.7 | 57.7 |
-| sensor_noise | 1.34 | 1.05 | -21.5 | 0.219 | 0.195 | -11.2 | 17.9 | 16.4 | 57.7 | 48.1 |
-| cap_minus20 | 1.85 | 1.6 | -13.6 | 0.227 | 0.201 | -11.5 | 21.1 | 20.6 | 57 | 48.1 |
-| cap_plus20 | 1.84 | 1.64 | -10.8 | 0.224 | 0.204 | -9.01 | 22 | 21.7 | 57.5 | 51.3 |
-| inner_lag_slow | 2 | 2 | 0 | 0.226 | 0.226 | 0 | 20.5 | 20.5 | 47.4 | 47.4 |
-| delay_long | 1.86 | 1.66 | -10.9 | 0.225 | 0.204 | -9.26 | 21.4 | 21.1 | 56.6 | 56.1 |
+| sensor_noise | 1.34 | 1.1 | -17.9 | 0.219 | 0.199 | -9.26 | 17.9 | 16.6 | 57.7 | 46.4 |
+| cap_minus20 | 1.85 | 1.65 | -10.5 | 0.227 | 0.207 | -8.93 | 21.1 | 20.7 | 57 | 54.3 |
+| cap_plus20 | 1.84 | 1.6 | -13 | 0.224 | 0.199 | -10.9 | 22 | 21.6 | 57.5 | 53.1 |
+| inner_lag_slow | 2 | 1.84 | -8.06 | 0.226 | 0.211 | -6.26 | 20.5 | 20.2 | 47.4 | 47.3 |
+| delay_long | 1.86 | 1.59 | -14.5 | 0.225 | 0.197 | -12.4 | 21.4 | 21 | 56.6 | 50.7 |
 | combined | 3.35 | 3.35 | 0 | 0.918 | 0.918 | 0 | 260 | 260 | 45.8 | 45.8 |
 
 Recovery overshoot (% of peak deviation, mean):
@@ -58,15 +58,15 @@ Recovery overshoot (% of peak deviation, mean):
 | scenario | baseline | GainShield |
 |---|---|---|
 | load_increase | 2.79 | 3.25 |
-| load_decrease | 3.13 | 6.7 |
-| g2v_to_v2g | 2.14 | 4.91 |
-| v2g_to_g2v | 1.81 | 2.6 |
+| load_decrease | 3.13 | 6.63 |
+| g2v_to_v2g | 2.14 | 6.31 |
+| v2g_to_g2v | 1.81 | 4.17 |
 | grid_sag | 6.09 | 6.09 |
-| sensor_noise | 11.6 | 14.9 |
-| cap_minus20 | 3.03 | 3.51 |
-| cap_plus20 | 2.64 | 2.96 |
-| inner_lag_slow | 2.37 | 2.37 |
-| delay_long | 2.79 | 3.13 |
+| sensor_noise | 11.6 | 14.2 |
+| cap_minus20 | 3.03 | 3.4 |
+| cap_plus20 | 2.64 | 3.04 |
+| inner_lag_slow | 2.37 | 2.59 |
+| delay_long | 2.79 | 3.27 |
 | combined | 3.14 | 3.14 |
 
 ## Stability margin and computation time
@@ -75,13 +75,13 @@ Recovery overshoot (% of peak deviation, mean):
   nominal PM 57.7°, GM 21.7 dB;
   worst case over the uncertainty set PM 42.1°, GM 15.9 dB,
   MM 0.59.
-* Per-control-step computation (Python, this machine): baseline 1.4 µs,
-  GainShield (PI + monitor) 10.1 µs.
-* Gain decision on a context change (GP prediction + exact re-certification): mean 584 ms,
-  dominated by the uncached tier-2 certificate (1571 ms median per new context bin).
+* Per-control-step computation (Python, this machine): baseline 1.8 µs,
+  GainShield (PI + monitor) 29.9 µs.
+* Gain decision on a context change (GP prediction + exact re-certification): mean 726 ms,
+  dominated by the uncached tier-2 certificate (1854 ms median per new context bin).
   This runs in the supervisory layer, not in the 10 kHz loop; for embedded use the tier-2 masks would be
   pre-computed on a context grid (see LIMITATIONS.md).
-* One safe-BO iteration (propose + GP refit): median 60 ms, p95 288 ms (CPU only).
+* One safe-BO iteration (propose + GP refit): median 328 ms, p95 1440 ms (CPU only).
 
 ## Robustness to model variation and noise
 

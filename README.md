@@ -23,17 +23,17 @@ part never holds a safety guarantee:
 
 | | Manual PI (baseline) | GainShield |
 |---|---|---|
-| Mean peak DC-link deviation, 11 scenarios × 5 seeds | 2.03 % | **1.69 %** (−15.6 %, p = 3.6e-8) |
-| Mean IAE | 0.316 V·s | **0.270 V·s** (−14.9 %) |
-| Mean settling time (±0.5 % band) | 56.9 ms | **54.9 ms** (−7.9 %) |
-| Current-reference ripple (noise amplification) | 1.67 A | 1.78 A (+8.5 %, the price) |
-| Power reversal G2V→V2G peak deviation | 2.79 % | **1.54 %** (−45 %) |
+| Mean peak DC-link deviation, 11 scenarios × 5 seeds | 2.03 % | **1.61 %** (−18.7 %, p = 7.6e-9) |
+| Mean IAE | 0.316 V·s | **0.262 V·s** (−16.9 %) |
+| Mean settling time (±0.5 % band) | 56.9 ms | **54.8 ms** (−8.0 %) |
+| Current-reference ripple (noise amplification) | 1.67 A | 1.85 A (+13.8 %, the price) |
+| Power reversal G2V→V2G peak deviation | 2.79 % | **1.44 %** (−48 %) |
 | Time outside ±5 % band / trips / current violations | 0 / 0 / 0 | 0 / 0 / 0 |
-| Probe episodes during online tuning outside ±5 % | – | 0 of 175 |
+| Probe episodes during online tuning outside ±5 % | – | 0 of 482 |
 | Injected unstable gains (gate bypassed) | – | detected, rolled back, peak 3.9 % |
 
-GainShield stays on the baseline where it has no certified, GP-supported improvement (20 kW grid sag, slow inner
-loop, combined stress) – it is never worse there. Full tables: [EVALUATION_REPORT](docs/EVALUATION_REPORT.md),
+GainShield adapts in 9 of 11 scenarios (−23 % on average there, up to −48 %) and stays on the baseline where it has no
+certified, GP-supported improvement (20 kW grid sag, combined stress) – it is never worse there. Full tables: [EVALUATION_REPORT](docs/EVALUATION_REPORT.md),
 [ABLATION_REPORT](docs/ABLATION_REPORT.md), [FAILURE_ANALYSIS](docs/FAILURE_ANALYSIS.md).
 
 ![g2v to v2g](results/figures/eval_g2v_to_v2g.png)
@@ -83,7 +83,8 @@ results/                   generated data, figures, audit logs
 
 Simulation only. All parameters are assumptions (the problem statement gives none). The stability
 certificate covers the linearised model inside the stated uncertainty set; the SafeOpt theoretical guarantee
-is not claimed. A stuck voltage sensor is a known undetected failure mode. No HIL or hardware tests have been
+is not claimed. Sensor faults are caught by plausibility checks (frozen reading, power-balance observer), validated in
+simulation only. No HIL or hardware tests have been
 performed – see [LIMITATIONS](docs/LIMITATIONS.md).
 
 ## Git hygiene

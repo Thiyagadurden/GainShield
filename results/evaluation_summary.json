@@ -16,75 +16,75 @@
   },
   "min_true_PM_deg": {
     "baseline": 45.76294799885687,
-    "gainshield": 45.76294799885687
+    "gainshield": 44.205524562301434
   },
   "min_true_MM": {
     "baseline": 0.649217413907284,
-    "gainshield": 0.648332368285347
+    "gainshield": 0.6334956172527476
   },
   "rollbacks_gainshield": 0,
   "monitor_alarms_gainshield": {
     "combined": 3
   },
   "compute_us_per_step_median": {
-    "baseline": 1.3521383343686466,
-    "gainshield": 10.139516328611839
+    "baseline": 1.836185496699727,
+    "gainshield": 29.947558668785252
   },
-  "gain_decision_ms_mean": 583.9149149115204,
+  "gain_decision_ms_mean": 725.5067863530408,
   "context_mask_ms": {
     "n": 50,
-    "median": 1570.923260499967
+    "median": 1854.4454020000103
   },
   "paired_tests": {
     "peak_dev_pct": {
       "baseline_mean": 2.0264457959788094,
-      "gainshield_mean": 1.691677255297302,
-      "mean_relative_change_pct": -15.574998679721668,
-      "gainshield_better_count": 40,
+      "gainshield_mean": 1.6072349890745756,
+      "mean_relative_change_pct": -18.67655404069924,
+      "gainshield_better_count": 44,
       "pairs": 55,
-      "wilcoxon_p": 3.569388204466033e-08
+      "wilcoxon_p": 7.615942892424528e-09
     },
     "IAE_Vs": {
       "baseline_mean": 0.31600568281561636,
-      "gainshield_mean": 0.2703891625221377,
-      "mean_relative_change_pct": -14.893077421348384,
-      "gainshield_better_count": 40,
+      "gainshield_mean": 0.26185868063228557,
+      "mean_relative_change_pct": -16.936489037909688,
+      "gainshield_better_count": 44,
       "pairs": 55,
-      "wilcoxon_p": 3.569388204466033e-08
+      "wilcoxon_p": 7.615942892424528e-09
     },
     "settling_time_ms": {
       "baseline_mean": 56.852727272727265,
-      "gainshield_mean": 54.874545454545455,
-      "mean_relative_change_pct": -7.918624932382241,
-      "gainshield_better_count": 40,
+      "gainshield_mean": 54.781818181818174,
+      "mean_relative_change_pct": -8.03437983134612,
+      "gainshield_better_count": 44,
       "pairs": 55,
-      "wilcoxon_p": 3.4906472758996035e-08
+      "wilcoxon_p": 7.479107504030413e-09
     },
     "i_ripple_A": {
       "baseline_mean": 1.672868146128089,
-      "gainshield_mean": 1.7839841513548473,
-      "mean_relative_change_pct": 8.458634259212367,
+      "gainshield_mean": 1.854383725017632,
+      "mean_relative_change_pct": 13.818846418277259,
       "gainshield_better_count": 10,
       "pairs": 55,
-      "wilcoxon_p": 0.0015612680633417387
+      "wilcoxon_p": 0.0007318608123545124
     }
   },
   "per_scenario": {
     "load_increase": {
       "peak_dev_pct": {
         "baseline": 1.8479172460376305,
-        "gainshield": 1.5891045188558337,
-        "change_pct": -14.005644881379412
+        "gainshield": 1.5871607009015605,
+        "change_pct": -14.110834546037895
       },
       "IAE_Vs": {
         "baseline": 0.2248202973991981,
-        "gainshield": 0.1983276513219653,
-        "change_pct": -11.78392092871917
+        "gainshield": 0.19791311904674716,
+        "change_pct": -11.96830475883309
       },
       "settling_time_ms": {
         "baseline": 21.479999999999997,
-        "gainshield": 21.02,
-        "change_pct": -2.141527001862185
+        "gainshield": 21.0,
+        "change_pct": -2.2346368715083655
       },
       "i_ripple_A": {
         "baseline": 1.3116090136427947,
@@ -93,89 +93,89 @@
       },
       "PM_true_deg": {
         "baseline": 57.745781831665,
-        "gainshield": 48.564527867123765,
-        "change_pct": -15.899436587949491
+        "gainshield": 51.70718253036381,
+        "change_pct": -10.457212821023601
       }
     },
     "load_decrease": {
       "peak_dev_pct": {
         "baseline": 1.8609287593479393,
-        "gainshield": 1.2241832322097905,
-        "change_pct": -34.21654504180275
+        "gainshield": 1.2616810617223564,
+        "change_pct": -32.2015388614638
       },
       "IAE_Vs": {
         "baseline": 0.2273419952933824,
-        "gainshield": 0.1341053133187369,
-        "change_pct": -41.01164057011313
+        "gainshield": 0.15120355078747263,
+        "change_pct": -33.490708308270946
       },
       "settling_time_ms": {
         "baseline": 21.71999999999999,
-        "gainshield": 14.279999999999998,
-        "change_pct": -34.25414364640883
+        "gainshield": 16.1,
+        "change_pct": -25.8747697974217
       },
       "i_ripple_A": {
         "baseline": 1.3116090136427974,
-        "gainshield": 1.9973911058119591,
-        "change_pct": 52.28555804633462
+        "gainshield": 2.121478275582408,
+        "change_pct": 61.74624095410265
       },
       "PM_true_deg": {
         "baseline": 57.745781831665,
-        "gainshield": 48.564527867123765,
-        "change_pct": -15.899436587949491
+        "gainshield": 51.70718253036381,
+        "change_pct": -10.457212821023601
       }
     },
     "g2v_to_v2g": {
       "peak_dev_pct": {
         "baseline": 2.7906887597790586,
-        "gainshield": 1.5438830737028582,
-        "change_pct": -44.677346468938055
+        "gainshield": 1.4444379783724401,
+        "change_pct": -48.24080710144124
       },
       "IAE_Vs": {
         "baseline": 0.41586880209811605,
-        "gainshield": 0.23219711055959408,
-        "change_pct": -44.165777911656924
+        "gainshield": 0.23697629282682658,
+        "change_pct": -43.016573584926746
       },
       "settling_time_ms": {
         "baseline": 30.2,
-        "gainshield": 22.759999999999998,
-        "change_pct": -24.635761589403977
+        "gainshield": 24.34,
+        "change_pct": -19.403973509933774
       },
       "i_ripple_A": {
         "baseline": 1.312200020966172,
-        "gainshield": 1.7259151664864465,
-        "change_pct": 31.528359923028837
+        "gainshield": 2.2201816626476143,
+        "change_pct": 69.19536863083542
       },
       "PM_true_deg": {
         "baseline": 57.745781831665,
-        "gainshield": 49.74352318121191,
-        "change_pct": -13.8577371309657
+        "gainshield": 46.8546179310522,
+        "change_pct": -18.860535878381004
       }
     },
     "v2g_to_g2v": {
       "peak_dev_pct": {
         "baseline": 2.779215517898564,
-        "gainshield": 2.1788088330358137,
-        "change_pct": -21.60345899754953
+        "gainshield": 1.4786825543034012,
+        "change_pct": -46.79496624927199
       },
       "IAE_Vs": {
         "baseline": 0.41275398526245083,
-        "gainshield": 0.30609692154422424,
-        "change_pct": -25.84034740461885
+        "gainshield": 0.20606875884671622,
+        "change_pct": -50.07467736121632
       },
       "settling_time_ms": {
         "baseline": 30.04,
-        "gainshield": 26.240000000000002,
-        "change_pct": -12.649800266311576
+        "gainshield": 22.0,
+        "change_pct": -26.76431424766977
       },
       "i_ripple_A": {
         "baseline": 1.3116090136427965,
-        "gainshield": 1.4343878334477052,
-        "change_pct": 9.360931384872767
+        "gainshield": 1.590429477806714,
+        "change_pct": 21.257894789052703
       },
       "PM_true_deg": {
         "baseline": 57.745781831665,
-        "gainshield": 49.74352318121191,
-        "change_pct": -13.8577371309657
+        "gainshield": 46.8546179310522,
+        "change_pct": -18.860535878381004
       }
     },
     "grid_sag": {
@@ -208,18 +208,18 @@
     "sensor_noise": {
       "peak_dev_pct": {
         "baseline": 1.338195572000768,
-        "gainshield": 1.0501921264330292,
-        "change_pct": -21.521775411133525
+        "gainshield": 1.0993171074067873,
+        "change_pct": -17.850788748077225
       },
       "IAE_Vs": {
         "baseline": 0.21914981624511234,
-        "gainshield": 0.19454028811395743,
-        "change_pct": -11.229545409990173
+        "gainshield": 0.19885489082359825,
+        "change_pct": -9.260754021721306
       },
       "settling_time_ms": {
         "baseline": 17.92,
-        "gainshield": 16.4,
-        "change_pct": -8.482142857142874
+        "gainshield": 16.600000000000005,
+        "change_pct": -7.366071428571408
       },
       "i_ripple_A": {
         "baseline": 3.934830143334085,
@@ -228,116 +228,116 @@
       },
       "PM_true_deg": {
         "baseline": 57.745781831665,
-        "gainshield": 48.1305219901696,
-        "change_pct": -16.651016812838193
+        "gainshield": 46.44636046123071,
+        "change_pct": -19.567526860010805
       }
     },
     "cap_minus20": {
       "peak_dev_pct": {
         "baseline": 1.849227393929158,
-        "gainshield": 1.5977443629585253,
-        "change_pct": -13.59935677982211
+        "gainshield": 1.6541900418636346,
+        "change_pct": -10.546964246031227
       },
       "IAE_Vs": {
         "baseline": 0.22713692421754547,
-        "gainshield": 0.20104182680249494,
-        "change_pct": -11.488707749717246
+        "gainshield": 0.2068528422852153,
+        "change_pct": -8.930332222383463
       },
       "settling_time_ms": {
         "baseline": 21.08,
-        "gainshield": 20.599999999999998,
-        "change_pct": -2.2770398481973455
+        "gainshield": 20.72,
+        "change_pct": -1.7077798861480051
       },
       "i_ripple_A": {
         "baseline": 1.3151268937524265,
-        "gainshield": 1.3151268937524265,
-        "change_pct": 0.0
+        "gainshield": 1.3151268937524268,
+        "change_pct": 1.6883892039609627e-14
       },
       "PM_true_deg": {
         "baseline": 56.96993768962691,
-        "gainshield": 48.06107268800833,
-        "change_pct": -15.637835256471952
+        "gainshield": 54.2517207564827,
+        "change_pct": -4.771318072968765
       }
     },
     "cap_plus20": {
       "peak_dev_pct": {
         "baseline": 1.8365055066676632,
-        "gainshield": 1.6385577539959684,
-        "change_pct": -10.778500361312327
+        "gainshield": 1.5970181398386303,
+        "change_pct": -13.040383813690951
       },
       "IAE_Vs": {
         "baseline": 0.22385175586317185,
-        "gainshield": 0.20367218812638505,
-        "change_pct": -9.014701563976768
+        "gainshield": 0.19937831642041406,
+        "change_pct": -10.932878032780339
       },
       "settling_time_ms": {
         "baseline": 22.039999999999992,
-        "gainshield": 21.719999999999995,
-        "change_pct": -1.4519056261342869
+        "gainshield": 21.619999999999997,
+        "change_pct": -1.9056261343012466
       },
       "i_ripple_A": {
         "baseline": 1.3091815243702918,
-        "gainshield": 1.309181524370291,
-        "change_pct": -6.784226657394462e-14
+        "gainshield": 1.309181524370293,
+        "change_pct": 8.48028332174308e-14
       },
       "PM_true_deg": {
         "baseline": 57.54746137801544,
-        "gainshield": 51.313130331336666,
-        "change_pct": -10.833372832429486
+        "gainshield": 53.05733165821939,
+        "change_pct": -7.802480964888214
       }
     },
     "inner_lag_slow": {
       "peak_dev_pct": {
         "baseline": 2.000315569085828,
-        "gainshield": 2.000315569085828,
-        "change_pct": 0.0
+        "gainshield": 1.839100916481391,
+        "change_pct": -8.05946097185627
       },
       "IAE_Vs": {
         "baseline": 0.22551669783278389,
-        "gainshield": 0.22551669783278389,
-        "change_pct": 0.0
+        "gainshield": 0.2113893729102389,
+        "change_pct": -6.264425232503231
       },
       "settling_time_ms": {
         "baseline": 20.460000000000004,
-        "gainshield": 20.460000000000004,
-        "change_pct": 0.0
+        "gainshield": 20.18,
+        "change_pct": -1.368523949169133
       },
       "i_ripple_A": {
         "baseline": 1.314491837972186,
-        "gainshield": 1.314491837972186,
-        "change_pct": 0.0
+        "gainshield": 1.3144918379721882,
+        "change_pct": 1.689204896605297e-13
       },
       "PM_true_deg": {
         "baseline": 47.405287713344535,
-        "gainshield": 47.405287713344535,
-        "change_pct": 0.0
+        "gainshield": 47.29976859386183,
+        "change_pct": -0.22258934513966447
       }
     },
     "delay_long": {
       "peak_dev_pct": {
         "baseline": 1.858866507155375,
-        "gainshield": 1.6566174141277543,
-        "change_pct": -10.880237620566017
+        "gainshield": 1.5889534550652087,
+        "change_pct": -14.52030315523918
       },
       "IAE_Vs": {
         "baseline": 0.2251433193735553,
-        "gainshield": 0.20430387273690842,
-        "change_pct": -9.256080391206414
+        "gainshield": 0.19732942562144729,
+        "change_pct": -12.35386145567105
       },
       "settling_time_ms": {
         "baseline": 21.360000000000003,
-        "gainshield": 21.059999999999995,
-        "change_pct": -1.4044943820225082
+        "gainshield": 20.96,
+        "change_pct": -1.8726591760299722
       },
       "i_ripple_A": {
         "baseline": 1.3121040280791545,
-        "gainshield": 1.3121040280791558,
-        "change_pct": 1.0153673802073084e-13
+        "gainshield": 1.3121040280791554,
+        "change_pct": 6.769115868048724e-14
       },
       "PM_true_deg": {
         "baseline": 56.56241302369026,
-        "gainshield": 56.1090557322173,
-        "change_pct": -0.8015168859275511
+        "gainshield": 50.66921272324585,
+        "change_pct": -10.418933679466857
       }
     },
     "combined": {
@@ -370,7 +370,7 @@
   },
   "audit_records": 256,
   "audit_gain_trace_problems": [],
-  "wall_seconds": 138.3197672209999,
+  "wall_seconds": 179.81789693300016,
   "environment": {
     "python": "3.13.18",
     "numpy": "2.5.3",

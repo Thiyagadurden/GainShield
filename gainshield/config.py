@@ -81,6 +81,11 @@ class SupervisorParams:
     I_abort_hold_s: float
     osc_window_s: float
     osc_rms_V: float
+    frozen_window_s: float
+    frozen_range_V: float
+    observer_tau_s: float
+    residual_threshold_V: float
+    residual_hold_s: float
     context_envelope: dict[str, tuple[float, float]]
 
 
