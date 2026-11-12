@@ -1,0 +1,6 @@
+C_pu,delay_samples,linear_critical_multiplier,nonlinear_stable_at_0.97x,nonlinear_stable_at_1.03x,agrees_within_3pct
+1.0,1.0,16.220000000000013,True,False,True
+1.0,1.5,12.28000000000001,True,False,True
+1.0,2.0,9.940000000000008,True,False,True
+0.8,1.5,9.840000000000007,True,False,True
+1.2,2.0,11.920000000000009,True,False,True

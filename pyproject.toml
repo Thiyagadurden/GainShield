@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gainshield"
+version = "0.1.0"
+description = "Safe Bayesian PI gain tuning with stability certification and runtime fallback for a bidirectional EV-charger DC link (simulation)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "pandas>=2.1", "matplotlib>=3.8", "scikit-learn>=1.4"]
+
+[project.optional-dependencies]
+dashboard = ["plotly>=5.18", "streamlit>=1.40"]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["gainshield*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

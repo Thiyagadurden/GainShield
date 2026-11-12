@@ -1,0 +1,908 @@
+{
+ "generated": "2026-11-12",
+ "evaluation": {
+  "paired": {
+   "peak_dev_pct": {
+    "baseline_mean": 2.0264457959788094,
+    "gainshield_mean": 1.691677255297302,
+    "mean_relative_change_pct": -15.574998679721668,
+    "gainshield_better_count": 40,
+    "pairs": 55,
+    "wilcoxon_p": 3.569388204466033e-08
+   },
+   "IAE_Vs": {
+    "baseline_mean": 0.31600568281561636,
+    "gainshield_mean": 0.2703891625221377,
+    "mean_relative_change_pct": -14.893077421348384,
+    "gainshield_better_count": 40,
+    "pairs": 55,
+    "wilcoxon_p": 3.569388204466033e-08
+   },
+   "settling_time_ms": {
+    "baseline_mean": 56.852727272727265,
+    "gainshield_mean": 54.874545454545455,
+    "mean_relative_change_pct": -7.918624932382241,
+    "gainshield_better_count": 40,
+    "pairs": 55,
+    "wilcoxon_p": 3.4906472758996035e-08
+   },
+   "i_ripple_A": {
+    "baseline_mean": 1.672868146128089,
+    "gainshield_mean": 1.7839841513548473,
+    "mean_relative_change_pct": 8.458634259212367,
+    "gainshield_better_count": 10,
+    "pairs": 55,
+    "wilcoxon_p": 0.0015612680633417387
+   }
+  },
+  "summary": {
+   "runs_per_controller": 55,
+   "seeds": 5,
+   "scenarios": 11,
+   "voltage_violation_ms_total": {
+    "baseline": 0.0,
+    "gainshield": 0.0
+   },
+   "trips": {
+    "baseline": 0,
+    "gainshield": 0
+   },
+   "current_violation_ms_total": {
+    "baseline": 0.0,
+    "gainshield": 0.0
+   },
+   "min_true_PM_deg": {
+    "baseline": 45.76294799885687,
+    "gainshield": 45.76294799885687
+   },
+   "min_true_MM": {
+    "baseline": 0.649217413907284,
+    "gainshield": 0.648332368285347
+   },
+   "rollbacks_gainshield": 0,
+   "monitor_alarms_gainshield": {
+    "combined": 3
+   },
+   "compute_us_per_step_median": {
+    "baseline": 1.3521383343686466,
+    "gainshield": 10.139516328611839
+   },
+   "gain_decision_ms_mean": 583.9149149115204,
+   "context_mask_ms": {
+    "n": 50,
+    "median": 1570.923260499967
+   },
+   "paired_tests": {
+    "peak_dev_pct": {
+     "baseline_mean": 2.0264457959788094,
+     "gainshield_mean": 1.691677255297302,
+     "mean_relative_change_pct": -15.574998679721668,
+     "gainshield_better_count": 40,
+     "pairs": 55,
+     "wilcoxon_p": 3.569388204466033e-08
+    },
+    "IAE_Vs": {
+     "baseline_mean": 0.31600568281561636,
+     "gainshield_mean": 0.2703891625221377,
+     "mean_relative_change_pct": -14.893077421348384,
+     "gainshield_better_count": 40,
+     "pairs": 55,
+     "wilcoxon_p": 3.569388204466033e-08
+    },
+    "settling_time_ms": {
+     "baseline_mean": 56.852727272727265,
+     "gainshield_mean": 54.874545454545455,
+     "mean_relative_change_pct": -7.918624932382241,
+     "gainshield_better_count": 40,
+     "pairs": 55,
+     "wilcoxon_p": 3.4906472758996035e-08
+    },
+    "i_ripple_A": {
+     "baseline_mean": 1.672868146128089,
+     "gainshield_mean": 1.7839841513548473,
+     "mean_relative_change_pct": 8.458634259212367,
+     "gainshield_better_count": 10,
+     "pairs": 55,
+     "wilcoxon_p": 0.0015612680633417387
+    }
+   },
+   "audit_records": 256,
+   "audit_gain_trace_problems": [],
+   "wall_seconds": 138.3197672209999
+  },
+  "per_scenario": {
+   "load_increase": {
+    "peak_dev_pct": {
+     "baseline": 1.8479172460376305,
+     "gainshield": 1.5891045188558337,
+     "change_pct": -14.005644881379412
+    },
+    "IAE_Vs": {
+     "baseline": 0.2248202973991981,
+     "gainshield": 0.1983276513219653,
+     "change_pct": -11.78392092871917
+    },
+    "settling_time_ms": {
+     "baseline": 21.479999999999997,
+     "gainshield": 21.02,
+     "change_pct": -2.141527001862185
+    },
+    "i_ripple_A": {
+     "baseline": 1.3116090136427947,
+     "gainshield": 1.311609013642793,
+     "change_pct": -1.3543341200947449e-13
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 48.564527867123765,
+     "change_pct": -15.899436587949491
+    }
+   },
+   "load_decrease": {
+    "peak_dev_pct": {
+     "baseline": 1.8609287593479393,
+     "gainshield": 1.2241832322097905,
+     "change_pct": -34.21654504180275
+    },
+    "IAE_Vs": {
+     "baseline": 0.2273419952933824,
+     "gainshield": 0.1341053133187369,
+     "change_pct": -41.01164057011313
+    },
+    "settling_time_ms": {
+     "baseline": 21.71999999999999,
+     "gainshield": 14.279999999999998,
+     "change_pct": -34.25414364640883
+    },
+    "i_ripple_A": {
+     "baseline": 1.3116090136427974,
+     "gainshield": 1.9973911058119591,
+     "change_pct": 52.28555804633462
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 48.564527867123765,
+     "change_pct": -15.899436587949491
+    }
+   },
+   "g2v_to_v2g": {
+    "peak_dev_pct": {
+     "baseline": 2.7906887597790586,
+     "gainshield": 1.5438830737028582,
+     "change_pct": -44.677346468938055
+    },
+    "IAE_Vs": {
+     "baseline": 0.41586880209811605,
+     "gainshield": 0.23219711055959408,
+     "change_pct": -44.165777911656924
+    },
+    "settling_time_ms": {
+     "baseline": 30.2,
+     "gainshield": 22.759999999999998,
+     "change_pct": -24.635761589403977
+    },
+    "i_ripple_A": {
+     "baseline": 1.312200020966172,
+     "gainshield": 1.7259151664864465,
+     "change_pct": 31.528359923028837
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 49.74352318121191,
+     "change_pct": -13.8577371309657
+    }
+   },
+   "v2g_to_g2v": {
+    "peak_dev_pct": {
+     "baseline": 2.779215517898564,
+     "gainshield": 2.1788088330358137,
+     "change_pct": -21.60345899754953
+    },
+    "IAE_Vs": {
+     "baseline": 0.41275398526245083,
+     "gainshield": 0.30609692154422424,
+     "change_pct": -25.84034740461885
+    },
+    "settling_time_ms": {
+     "baseline": 30.04,
+     "gainshield": 26.240000000000002,
+     "change_pct": -12.649800266311576
+    },
+    "i_ripple_A": {
+     "baseline": 1.3116090136427965,
+     "gainshield": 1.4343878334477052,
+     "change_pct": 9.360931384872767
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 49.74352318121191,
+     "change_pct": -13.8577371309657
+    }
+   },
+   "grid_sag": {
+    "peak_dev_pct": {
+     "baseline": 0.7794368133782115,
+     "gainshield": 0.7794368133782115,
+     "change_pct": 0.0
+    },
+    "IAE_Vs": {
+     "baseline": 0.15682550313037918,
+     "gainshield": 0.15682550313037918,
+     "change_pct": 0.0
+    },
+    "settling_time_ms": {
+     "baseline": 158.98000000000002,
+     "gainshield": 158.98000000000002,
+     "change_pct": 0.0
+    },
+    "i_ripple_A": {
+     "baseline": 1.3116090019481963,
+     "gainshield": 1.3116090019481963,
+     "change_pct": 0.0
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 57.745781831665,
+     "change_pct": 0.0
+    }
+   },
+   "sensor_noise": {
+    "peak_dev_pct": {
+     "baseline": 1.338195572000768,
+     "gainshield": 1.0501921264330292,
+     "change_pct": -21.521775411133525
+    },
+    "IAE_Vs": {
+     "baseline": 0.21914981624511234,
+     "gainshield": 0.19454028811395743,
+     "change_pct": -11.229545409990173
+    },
+    "settling_time_ms": {
+     "baseline": 17.92,
+     "gainshield": 16.4,
+     "change_pct": -8.482142857142874
+    },
+    "i_ripple_A": {
+     "baseline": 3.934830143334085,
+     "gainshield": 3.9348301433340835,
+     "change_pct": -3.385832630684593e-14
+    },
+    "PM_true_deg": {
+     "baseline": 57.745781831665,
+     "gainshield": 48.1305219901696,
+     "change_pct": -16.651016812838193
+    }
+   },
+   "cap_minus20": {
+    "peak_dev_pct": {
+     "baseline": 1.849227393929158,
+     "gainshield": 1.5977443629585253,
+     "change_pct": -13.59935677982211
+    },
+    "IAE_Vs": {
+     "baseline": 0.22713692421754547,
+     "gainshield": 0.20104182680249494,
+     "change_pct": -11.488707749717246
+    },
+    "settling_time_ms": {
+     "baseline": 21.08,
+     "gainshield": 20.599999999999998,
+     "change_pct": -2.2770398481973455
+    },
+    "i_ripple_A": {
+     "baseline": 1.3151268937524265,
+     "gainshield": 1.3151268937524265,
+     "change_pct": 0.0
+    },
+    "PM_true_deg": {
+     "baseline": 56.96993768962691,
+     "gainshield": 48.06107268800833,
+     "change_pct": -15.637835256471952
+    }
+   },
+   "cap_plus20": {
+    "peak_dev_pct": {
+     "baseline": 1.8365055066676632,
+     "gainshield": 1.6385577539959684,
+     "change_pct": -10.778500361312327
+    },
+    "IAE_Vs": {
+     "baseline": 0.22385175586317185,
+     "gainshield": 0.20367218812638505,
+     "change_pct": -9.014701563976768
+    },
+    "settling_time_ms": {
+     "baseline": 22.039999999999992,
+     "gainshield": 21.719999999999995,
+     "change_pct": -1.4519056261342869
+    },
+    "i_ripple_A": {
+     "baseline": 1.3091815243702918,
+     "gainshield": 1.309181524370291,
+     "change_pct": -6.784226657394462e-14
+    },
+    "PM_true_deg": {
+     "baseline": 57.54746137801544,
+     "gainshield": 51.313130331336666,
+     "change_pct": -10.833372832429486
+    }
+   },
+   "inner_lag_slow": {
+    "peak_dev_pct": {
+     "baseline": 2.000315569085828,
+     "gainshield": 2.000315569085828,
+     "change_pct": 0.0
+    },
+    "IAE_Vs": {
+     "baseline": 0.22551669783278389,
+     "gainshield": 0.22551669783278389,
+     "change_pct": 0.0
+    },
+    "settling_time_ms": {
+     "baseline": 20.460000000000004,
+     "gainshield": 20.460000000000004,
+     "change_pct": 0.0
+    },
+    "i_ripple_A": {
+     "baseline": 1.314491837972186,
+     "gainshield": 1.314491837972186,
+     "change_pct": 0.0
+    },
+    "PM_true_deg": {
+     "baseline": 47.405287713344535,
+     "gainshield": 47.405287713344535,
+     "change_pct": 0.0
+    }
+   },
+   "delay_long": {
+    "peak_dev_pct": {
+     "baseline": 1.858866507155375,
+     "gainshield": 1.6566174141277543,
+     "change_pct": -10.880237620566017
+    },
+    "IAE_Vs": {
+     "baseline": 0.2251433193735553,
+     "gainshield": 0.20430387273690842,
+     "change_pct": -9.256080391206414
+    },
+    "settling_time_ms": {
+     "baseline": 21.360000000000003,
+     "gainshield": 21.059999999999995,
+     "change_pct": -1.4044943820225082
+    },
+    "i_ripple_A": {
+     "baseline": 1.3121040280791545,
+     "gainshield": 1.3121040280791558,
+     "change_pct": 1.0153673802073084e-13
+    },
+    "PM_true_deg": {
+     "baseline": 56.56241302369026,
+     "gainshield": 56.1090557322173,
+     "change_pct": -0.8015168859275511
+    }
+   },
+   "combined": {
+    "peak_dev_pct": {
+     "baseline": 3.3496061104867096,
+     "gainshield": 3.3496061104867096,
+     "change_pct": 0.0
+    },
+    "IAE_Vs": {
+     "baseline": 0.9176534142560848,
+     "gainshield": 0.9176534142560848,
+     "change_pct": 0.0
+    },
+    "settling_time_ms": {
+     "baseline": 260.09999999999997,
+     "gainshield": 260.09999999999997,
+     "change_pct": 0.0
+    },
+    "i_ripple_A": {
+     "baseline": 2.657179116058079,
+     "gainshield": 2.657179116058079,
+     "change_pct": 0.0
+    },
+    "PM_true_deg": {
+     "baseline": 45.76294799885687,
+     "gainshield": 45.76294799885687,
+     "change_pct": 0.0
+    }
+   }
+  },
+  "tuning": {
+   "contexts": 8,
+   "proposals": 210,
+   "episodes_run": 175,
+   "rejected_by_supervisor": 35,
+   "rejection_reasons": {
+    "gain step x3.24": 18,
+    "gain step x3.85": 14,
+    "GP margin uncertainty 0.26": 1,
+    "not certified (robust_stable=True, PM=39.7 deg, GM=11.5 dB, MM=0.52)": 1,
+    "gain step x3.20": 1
+   },
+   "episodes_aborted_by_monitor": 0,
+   "episodes_with_true_band_violation": 0,
+   "episodes_with_trip": 0,
+   "max_true_dev_V": 15.68638017358353,
+   "min_measured_m_v": 0.5098006195755147,
+   "bo_iteration_ms_median": 59.84682800021801,
+   "bo_iteration_ms_p95": 288.17552910018094,
+   "wall_seconds_total": 85.3229026189997,
+   "audit_records": 578,
+   "audit_gain_trace_problems": [],
+   "recommended": {
+    "nominal_10kW": {
+     "Kp": 1.9011359896324658,
+     "Ki": 374.94710466622786,
+     "pred_J": 0.8803819986407425,
+     "baseline_J_measured": 0.9987625763698784,
+     "best_J_measured": 0.876518016677378
+    },
+    "C-20%_10kW": {
+     "Kp": 1.9011359896324658,
+     "Ki": 315.47867224009644,
+     "pred_J": 0.8624967714306622,
+     "baseline_J_measured": 0.9909182104947083,
+     "best_J_measured": 0.8573972702171799
+    },
+    "C+20%_10kW": {
+     "Kp": 1.9011359896324658,
+     "Ki": 315.47867224009644,
+     "pred_J": 0.915806705514966,
+     "baseline_J_measured": 1.0318055600388398,
+     "best_J_measured": 0.9120841827838029
+    },
+    "sag0.85_20kW": {
+     "Kp": 1.311094804357985,
+     "Ki": 152.89735327789916,
+     "pred_J": 1.1076338201408922,
+     "baseline_J_measured": 1.0937162732913759,
+     "best_J_measured": 1.0782070304664533
+    },
+    "V2G_-12kW": {
+     "Kp": 1.7161664286102438,
+     "Ki": 315.47867224009644,
+     "pred_J": 0.8470272435493575,
+     "baseline_J_measured": 0.9684464403905854,
+     "best_J_measured": 0.8562413324261658
+    },
+    "tau0.9ms_10kW": {
+     "Kp": 1.7161664286102438,
+     "Ki": 187.91870214422212,
+     "pred_J": 0.9741600418457457,
+     "baseline_J_measured": 1.0772051289160351,
+     "best_J_measured": 1.0021734437098948
+    },
+    "delay1.9_10kW": {
+     "Kp": 2.333032269952246,
+     "Ki": 265.4422221154942,
+     "pred_J": 0.8764563839230355,
+     "baseline_J_measured": 1.0049113620933514,
+     "best_J_measured": 0.8989325567634205
+    },
+    "nominal_20kW": {
+     "Kp": 1.3984657664836895,
+     "Ki": 158.11388300841895,
+     "pred_J": 0.9751102738220865,
+     "baseline_J_measured": 0.9744190375346289,
+     "best_J_measured": 0.9744190375346289
+    }
+   }
+  },
+  "certificate": {
+   "grid_points": 1681,
+   "fraction_screened_MC": 0.7239738251041047,
+   "fraction_nominal_stable": 0.8352171326591314,
+   "fraction_robust_stable": 0.6627007733491969,
+   "fraction_certified": 0.2201070791195717,
+   "certified_but_not_screened": 0,
+   "certified_Kp_max": 2.106041693172322,
+   "certified_Ki_max": 158.11388300841895,
+   "k_interval": [
+    207.54322466456637,
+    445.707935100654
+   ],
+   "baseline_gains": {
+    "Kp": 1.311094804357985,
+    "Ki": 152.89735327789916
+   },
+   "baseline_nominal_margins": {
+    "PM": 57.745781831665,
+    "GM": 21.7470144793609,
+    "MM": 0.7857376099218971,
+    "wc": 413.07646658190384,
+    "rho": 0.9789043621233611
+   },
+   "baseline_worst_case": {
+    "robust_stable": true,
+    "margins_ok": true,
+    "certified": true,
+    "PM_worst": 42.13090021288099,
+    "GM_worst": 15.91173764297017,
+    "MM_worst": 0.5894451159541286
+   },
+   "linear_model_predicts_nonlinear_instability_within_3pct": true,
+   "compute_seconds": 20.153202277999753
+  }
+ },
+ "ablation": {
+  "rows": [
+   {
+    "variant": "A complete",
+    "episodes": 144,
+    "rejected": 26,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 15.503027733160025,
+    "tuning_min_m_v": 0.5155303833387492,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 60,
+    "mean_probe_J": 1.1951266709479968,
+    "deploy_peak_dev_vs_baseline": 0.8152161235350707,
+    "deploy_IAE_vs_baseline": 0.8454315898996424,
+    "deploy_ripple_vs_baseline": 1.2267215399278284,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": true,
+    "fault_peak_dev_pct": 3.945996847144471,
+    "fault_v_viol_ms": 0.0,
+    "seconds": 103.94060269200008
+   },
+   {
+    "variant": "B no certified region",
+    "episodes": 148,
+    "rejected": 22,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 14.326507267985448,
+    "tuning_min_m_v": 0.5522966478754547,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 81,
+    "mean_probe_J": 1.2016874900610928,
+    "deploy_peak_dev_vs_baseline": 0.8422636071946528,
+    "deploy_IAE_vs_baseline": 0.8556814112409137,
+    "deploy_ripple_vs_baseline": 1.1787488237006194,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": true,
+    "fault_peak_dev_pct": 4.697756591923024,
+    "fault_v_viol_ms": 0.0,
+    "seconds": 78.32529582100005
+   },
+   {
+    "variant": "C no GP uncertainty",
+    "episodes": 15,
+    "rejected": 155,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 15.47030060068414,
+    "tuning_min_m_v": 0.5165531062286206,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 4,
+    "mean_probe_J": 1.157536424433374,
+    "deploy_peak_dev_vs_baseline": 0.6449917010807006,
+    "deploy_IAE_vs_baseline": 0.6138462808633978,
+    "deploy_ripple_vs_baseline": 1.2808640433334453,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": true,
+    "fault_peak_dev_pct": 4.382261169579635,
+    "fault_v_viol_ms": 0.0,
+    "seconds": 52.98258792900015
+   },
+   {
+    "variant": "D no runtime monitor",
+    "episodes": 144,
+    "rejected": 26,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 15.503027733160025,
+    "tuning_min_m_v": 0.5155303833387492,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 60,
+    "mean_probe_J": 1.1951266709479968,
+    "deploy_peak_dev_vs_baseline": 0.8152161235350707,
+    "deploy_IAE_vs_baseline": 0.8454315898996424,
+    "deploy_ripple_vs_baseline": 1.2267215399278284,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": false,
+    "fault_rolled_back": false,
+    "fault_peak_dev_pct": 7.53582643172406,
+    "fault_v_viol_ms": 47.5,
+    "seconds": 105.30836056299997
+   },
+   {
+    "variant": "E no context",
+    "episodes": 141,
+    "rejected": 29,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 16.678422126134024,
+    "tuning_min_m_v": 0.4787993085583117,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 0,
+    "mean_probe_J": 1.3243680419459434,
+    "deploy_peak_dev_vs_baseline": 0.8856014178731195,
+    "deploy_IAE_vs_baseline": 0.9688067702900256,
+    "deploy_ripple_vs_baseline": 1.1839829787535667,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": true,
+    "fault_peak_dev_pct": 4.688882304149757,
+    "fault_v_viol_ms": 0.0,
+    "seconds": 73.3285770980001
+   },
+   {
+    "variant": "F no fallback",
+    "episodes": 144,
+    "rejected": 26,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 15.503027733160025,
+    "tuning_min_m_v": 0.5155303833387492,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 60,
+    "mean_probe_J": 1.1951266709479968,
+    "deploy_peak_dev_vs_baseline": 0.8152161235350707,
+    "deploy_IAE_vs_baseline": 0.8454315898996424,
+    "deploy_ripple_vs_baseline": 1.2267215399278284,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": false,
+    "fault_peak_dev_pct": 7.53582643172406,
+    "fault_v_viol_ms": 47.5,
+    "seconds": 106.8295614829999
+   },
+   {
+    "variant": "B+C plain constrained BO",
+    "episodes": 14,
+    "rejected": 156,
+    "tuning_monitor_aborts": 0,
+    "tuning_unsafe_episodes": 0,
+    "tuning_trips": 0,
+    "tuning_max_dev_V": 11.890846552161063,
+    "tuning_min_m_v": 0.6284110452449667,
+    "tuning_not_robustly_stable_gains": 0,
+    "tuning_gains_below_global_margins": 4,
+    "mean_probe_J": 1.2267678422593884,
+    "deploy_peak_dev_vs_baseline": 1.0,
+    "deploy_IAE_vs_baseline": 1.0,
+    "deploy_ripple_vs_baseline": 1.0,
+    "deploy_v_viol_ms": 0.0,
+    "deploy_trips": 0,
+    "fault_detected": true,
+    "fault_rolled_back": true,
+    "fault_peak_dev_pct": 4.133836197535075,
+    "fault_v_viol_ms": 0.0,
+    "seconds": 22.51989517099992
+   }
+  ]
+ },
+ "failures": {
+  "rows": [
+   {
+    "case": "G1 candidate outside certified region",
+    "layer": "E: candidate gate",
+    "detected": true,
+    "response": "rejected, baseline kept",
+    "reason": "not certified (robust_stable=False, PM=-25.6 deg, GM=inf dB, MM=0.27); gain step x9.81 exceeds limit x3.0",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "G2 certified gains but GP margin uncertainty high",
+    "layer": "E: candidate gate",
+    "detected": true,
+    "response": "rejected, baseline kept",
+    "reason": "GP margin uncertainty 0.40 > 0.25",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "G3 certified gains but GP margin lower bound below threshold",
+    "layer": "E: candidate gate",
+    "detected": true,
+    "response": "rejected, baseline kept",
+    "reason": "GP margin lower bound 0.05 < 0.15",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "G4 context outside validated envelope (C = 0.6 pu)",
+    "layer": "E: candidate gate",
+    "detected": true,
+    "response": "rejected, baseline kept",
+    "reason": "context outside validated envelope: C_pu=0.6 outside (0.75, 1.25)",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "G5 excessive gain step (x5 Kp)",
+    "layer": "E: candidate gate",
+    "detected": true,
+    "response": "rejected, baseline kept",
+    "reason": "not certified (robust_stable=True, PM=24.0 deg, GM=6.2 dB, MM=0.33); gain step x5.00 exceeds limit x3.0",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "G6 valid candidate (control case)",
+    "layer": "E: candidate gate",
+    "detected": false,
+    "response": "accepted",
+    "reason": "all checks passed",
+    "true_trip": 0.0,
+    "peak_dev_pct": NaN,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": NaN,
+    "final_abs_err_V": NaN
+   },
+   {
+    "case": "R1 unstable gains injected at 60 ms (gate bypassed)",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": true,
+    "response": "rollback to baseline",
+    "reason": "|Vdc-Vref|=32.4 V > 32.0 V",
+    "true_trip": 0.0,
+    "peak_dev_pct": 3.9455367979430633,
+    "detection": "V_ABORT",
+    "t_detect_ms": 105.3,
+    "rollbacks": 1.0,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.3529782579871607
+   },
+   {
+    "case": "R2 same, runtime monitor disabled (ablation D)",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": false,
+    "response": "none",
+    "reason": NaN,
+    "true_trip": 0.0,
+    "peak_dev_pct": 7.56412521844527,
+    "detection": "none",
+    "t_detect_ms": NaN,
+    "rollbacks": 0.0,
+    "v_viol_ms": 48.0,
+    "final_abs_err_V": 33.773004991466564
+   },
+   {
+    "case": "R3 same, fallback disabled (ablation F)",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": true,
+    "response": "alarm only (fallback disabled)",
+    "reason": "|Vdc-Vref|=32.4 V > 32.0 V",
+    "true_trip": 0.0,
+    "peak_dev_pct": 7.56412521844527,
+    "detection": "V_ABORT",
+    "t_detect_ms": 105.3,
+    "rollbacks": 0.0,
+    "v_viol_ms": 48.0,
+    "final_abs_err_V": 33.773004991466564
+   },
+   {
+    "case": "R4 voltage-sensor spike +60 V for 0.3 ms",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": true,
+    "response": "rollback to baseline",
+    "reason": "|dv|=61.4 V/sample > 30.2 V implausible",
+    "true_trip": 0.0,
+    "peak_dev_pct": 0.7947740568630479,
+    "detection": "SENSOR_FAULT",
+    "t_detect_ms": 100.0,
+    "rollbacks": 1.0,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.3529782579871607
+   },
+   {
+    "case": "R5 voltage sensor stuck at 800 V from 100 ms, load step at 150 ms",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": false,
+    "response": "none",
+    "reason": NaN,
+    "true_trip": 1.0,
+    "peak_dev_pct": 96.26565314884547,
+    "detection": "none",
+    "t_detect_ms": NaN,
+    "rollbacks": 0.0,
+    "v_viol_ms": 57.7,
+    "final_abs_err_V": 770.1252251907639
+   },
+   {
+    "case": "R6 plant outside model: C = 0.5 pu, delay 3 samples (context not updated)",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": false,
+    "response": "none",
+    "reason": NaN,
+    "true_trip": 0.0,
+    "peak_dev_pct": 1.8662792219211468,
+    "detection": "none",
+    "t_detect_ms": NaN,
+    "rollbacks": 0.0,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.2473568067362066
+   },
+   {
+    "case": "R7 overload: 30 kW step at 0.80 pu grid (current limit)",
+    "layer": "E: runtime monitor + F: fallback",
+    "detected": true,
+    "response": "alarm, baseline already active",
+    "reason": "|i_d|>77.6 A for 21 samples",
+    "true_trip": 0.0,
+    "peak_dev_pct": 3.289139292441007,
+    "detection": "I_ABORT",
+    "t_detect_ms": 68.5,
+    "rollbacks": 0.0,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.2486666393765517
+   },
+   {
+    "case": "R6-ref baseline only, plant outside model",
+    "layer": "reference",
+    "detected": NaN,
+    "response": NaN,
+    "reason": NaN,
+    "true_trip": 0.0,
+    "peak_dev_pct": 1.8662792219211468,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.2473568067362066
+   },
+   {
+    "case": "R7-ref baseline only, overload",
+    "layer": "reference",
+    "detected": NaN,
+    "response": NaN,
+    "reason": NaN,
+    "true_trip": 0.0,
+    "peak_dev_pct": 3.289139292441007,
+    "detection": NaN,
+    "t_detect_ms": NaN,
+    "rollbacks": NaN,
+    "v_viol_ms": 0.0,
+    "final_abs_err_V": 0.2486666393765517
+   }
+  ]
+ }
+}

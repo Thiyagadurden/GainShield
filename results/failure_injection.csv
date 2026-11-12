@@ -1,0 +1,16 @@
+case,layer,detected,response,reason,true_trip,peak_dev_pct,detection,t_detect_ms,rollbacks,v_viol_ms,final_abs_err_V
+G1 candidate outside certified region,E: candidate gate,True,"rejected, baseline kept","not certified (robust_stable=False, PM=-25.6 deg, GM=inf dB, MM=0.27); gain step x9.81 exceeds limit x3.0",0.0,,,,,,
+G2 certified gains but GP margin uncertainty high,E: candidate gate,True,"rejected, baseline kept",GP margin uncertainty 0.40 > 0.25,0.0,,,,,,
+G3 certified gains but GP margin lower bound below threshold,E: candidate gate,True,"rejected, baseline kept",GP margin lower bound 0.05 < 0.15,0.0,,,,,,
+G4 context outside validated envelope (C = 0.6 pu),E: candidate gate,True,"rejected, baseline kept","context outside validated envelope: C_pu=0.6 outside (0.75, 1.25)",0.0,,,,,,
+G5 excessive gain step (x5 Kp),E: candidate gate,True,"rejected, baseline kept","not certified (robust_stable=True, PM=24.0 deg, GM=6.2 dB, MM=0.33); gain step x5.00 exceeds limit x3.0",0.0,,,,,,
+G6 valid candidate (control case),E: candidate gate,False,accepted,all checks passed,0.0,,,,,,
+R1 unstable gains injected at 60 ms (gate bypassed),E: runtime monitor + F: fallback,True,rollback to baseline,|Vdc-Vref|=32.4 V > 32.0 V,0.0,3.9455367979430633,V_ABORT,105.30000000000001,1.0,0.0,0.35297825798716076
+"R2 same, runtime monitor disabled (ablation D)",E: runtime monitor + F: fallback,False,none,,0.0,7.56412521844527,none,,0.0,48.0,33.773004991466564
+"R3 same, fallback disabled (ablation F)",E: runtime monitor + F: fallback,True,alarm only (fallback disabled),|Vdc-Vref|=32.4 V > 32.0 V,0.0,7.56412521844527,V_ABORT,105.30000000000001,0.0,48.0,33.773004991466564
+R4 voltage-sensor spike +60 V for 0.3 ms,E: runtime monitor + F: fallback,True,rollback to baseline,|dv|=61.4 V/sample > 30.2 V implausible,0.0,0.7947740568630479,SENSOR_FAULT,100.0,1.0,0.0,0.35297825798716076
+"R5 voltage sensor stuck at 800 V from 100 ms, load step at 150 ms",E: runtime monitor + F: fallback,False,none,,1.0,96.26565314884549,none,,0.0,57.7,770.1252251907639
+"R6 plant outside model: C = 0.5 pu, delay 3 samples (context not updated)",E: runtime monitor + F: fallback,False,none,,0.0,1.8662792219211468,none,,0.0,0.0,0.24735680673620664
+R7 overload: 30 kW step at 0.80 pu grid (current limit),E: runtime monitor + F: fallback,True,"alarm, baseline already active",|i_d|>77.6 A for 21 samples,0.0,3.289139292441007,I_ABORT,68.5,0.0,0.0,0.24866663937655176
+"R6-ref baseline only, plant outside model",reference,,n/a,,0.0,1.8662792219211468,,,,0.0,0.24735680673620664
+"R7-ref baseline only, overload",reference,,n/a,,0.0,3.289139292441007,,,,0.0,0.24866663937655176

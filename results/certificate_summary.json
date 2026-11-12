@@ -1,0 +1,35 @@
+{
+  "grid_points": 1681,
+  "fraction_screened_MC": 0.7239738251041047,
+  "fraction_nominal_stable": 0.8352171326591314,
+  "fraction_robust_stable": 0.6627007733491969,
+  "fraction_certified": 0.2201070791195717,
+  "certified_but_not_screened": 0,
+  "certified_Kp_max": 2.106041693172322,
+  "certified_Ki_max": 158.11388300841895,
+  "k_interval": [
+    207.54322466456637,
+    445.707935100654
+  ],
+  "baseline_gains": {
+    "Kp": 1.311094804357985,
+    "Ki": 152.89735327789916
+  },
+  "baseline_nominal_margins": {
+    "PM": 57.745781831665,
+    "GM": 21.7470144793609,
+    "MM": 0.7857376099218971,
+    "wc": 413.07646658190384,
+    "rho": 0.9789043621233611
+  },
+  "baseline_worst_case": {
+    "robust_stable": true,
+    "margins_ok": true,
+    "certified": true,
+    "PM_worst": 42.13090021288099,
+    "GM_worst": 15.91173764297017,
+    "MM_worst": 0.5894451159541286
+  },
+  "linear_model_predicts_nonlinear_instability_within_3pct": true,
+  "compute_seconds": 20.153202277999753
+}
